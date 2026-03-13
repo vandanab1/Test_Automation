@@ -1,6 +1,6 @@
 const {test, expect}= require('@playwright/test')
 
-test('login',async({page})=>{
+test('Valid login',async({page})=>{
 
 await page.goto('https://www.saucedemo.com/');
 await page.locator('#user-name').fill('standard_user');
@@ -16,8 +16,26 @@ await page.goto('https://www.saucedemo.com/');
 await page.locator('#user-name').fill('Invalid username');
 await page.locator('#password').fill('Invalid password');
 await page.locator('#login-button').click();
-await expect(page.locator('.error-message-container.error')).toHaveText('Epic sadface: Username and password do not match any user in this service');
+const errorMessage = page.locator('.error-message-container.error');
+await expect(errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
+})
 
+test('Locked out user', async({page})=>{
+await page.goto('https://www.saucedemo.com/');
+await page.locator('#user-name').fill('locked_out_user');
+await page.locator('#password').fill('secret_sauce');
+await page.locator('#login-button').click();
+const lockedOutMessage = page.locator('.error-message-container.error');
+await expect(lockedOutMessage).toHaveText('Epic sadface: Sorry, this user has been locked out.');
+})
+
+test('Empty fields', async({page})=>{
+await page.goto('https://www.saucedemo.com/');
+await page.locator('#user-name');
+await page.locator('#password');
+await page.locator('#login-button').click();
+const emptyMessage = page.locator('.error-message-container.error');
+await expect(emptyMessage).toHaveText('Epic sadface: Username is required');
 })
 
 // await page.locator('#add-to-cart-sauce-labs-bolt-t-shirt').click();
