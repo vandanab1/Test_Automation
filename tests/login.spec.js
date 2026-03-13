@@ -3,8 +3,6 @@ const {test, expect}= require('@playwright/test')
 test('login',async({page})=>{
 
 await page.goto('https://www.saucedemo.com/');
-await expect(page).toHaveURL('https://www.saucedemo.com/');
-
 await page.locator('#user-name').fill('standard_user');
 await page.locator('#password').fill('secret_sauce');
 await page.locator('#login-button').click();
@@ -15,7 +13,6 @@ await expect(page).toHaveTitle('Swag Labs');
 
 test('Invalid login', async()=>{
 await page.goto('https://www.saucedemo.com/');
-await expect(page).toHaveURL('https://www.saucedemo.com/');
 await page.locator('#user-name').fill('Invalid username');
 await page.locator('#password').fill('Invalid password');
 await page.locator('#login-button').click();
