@@ -23,6 +23,6 @@ await page.toHaveURL('https://www.saucedemo.com/inventory.html');
 // await page.locator('.btn.btn_primary.btn_small').click();
 // await page.locator('#react-burger-menu-btn').click();
 // await page.locator('#logout_sidebar_link').click();
-//test
+////test
 
 })
