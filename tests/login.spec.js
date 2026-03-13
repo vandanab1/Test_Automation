@@ -11,7 +11,17 @@ await page.locator('#login-button').click();
 await expect(page.getByText('Products')).toHaveText('Products');
 await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 await expect(page).toHaveTitle('Swag Labs');
-//test
+})
+
+test('Invalid login', async()=>{
+await page.goto('https://www.saucedemo.com/');
+await expect(page).toHaveURL('https://www.saucedemo.com/');
+await page.locator('#user-name').fill('Invalid username');
+await page.locator('#password').fill('Invalid password');
+await page.locator('#login-button').click();
+await expect(page.locator('.error-message-container.error')).toHaveText('Epic sadface: Username and password do not match any user in this service');
+
+})
 
 // await page.locator('#add-to-cart-sauce-labs-bolt-t-shirt').click();
 // await page.locator('.shopping_cart_link').click();
@@ -26,4 +36,3 @@ await expect(page).toHaveTitle('Swag Labs');
 // await page.locator('#logout_sidebar_link').click();
 ////test
 
-})
