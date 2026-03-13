@@ -11,7 +11,7 @@ await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 await expect(page).toHaveTitle('Swag Labs');
 })
 
-test('Invalid login', async()=>{
+test('Invalid login', async({page})=>{
 await page.goto('https://www.saucedemo.com/');
 await page.locator('#user-name').fill('Invalid username');
 await page.locator('#password').fill('Invalid password');
