@@ -11,7 +11,7 @@ await page.locator('#login-button').click();
 await expect(page.getByText('Products')).toHaveText('Products');
 await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 await expect(page).toHaveTitle('Swag Labs');
-
+//test
 
 // await page.locator('#add-to-cart-sauce-labs-bolt-t-shirt').click();
 // await page.locator('.shopping_cart_link').click();
