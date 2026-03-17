@@ -27,15 +27,11 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.BASE_URL || 'https://demoqa.com',
+    baseURL: process.env.BASE_URL || 'https://www.saucedemo.com/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
-
-  /* Global setup and teardown */
-  globalSetup: require.resolve('./global-setup.js'),
-  globalTeardown: require.resolve('./global-teardown.js'),
 
   /* Configure projects for major browsers */
   projects: [
